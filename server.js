@@ -89,14 +89,18 @@ app.post("/api/tables", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body parsing middleware
   var newTableRes = req.body;
-  
+
   if (tables.length >= 5) {
-      waitlist.push(newTableRes); 
+    waitlist.push(newTableRes);
   } else {
-      tables.push(newTableRes);
+    tables.push(newTableRes);
   }
 
   // Using a RegEx Pattern to remove spaces from newCharacter
+  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+  //newTableRes.routeName = newTableRes.name.replace(/\s+/g, "").toLowerCase();
+
+  console.log(newTableRes);
   // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
   //newTableRes.routeName = newTableRes.name.replace(/\s+/g, "").toLowerCase();
 
