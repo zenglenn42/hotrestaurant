@@ -37,25 +37,28 @@ var tables = [
 
 var waitlist = [];
 
+app.use("/static", express.static("public"));
+
 // Routes
 // =============================================================
 
 // Basic route that sends the user first to the AJAX Page
 app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "home.html"));
+  console.log(__dirname);
+  res.sendFile(path.join(__dirname, "/static/home.html"));
 });
 
 app.get("/home", function(req, res) {
-  res.sendFile(path.join(__dirname, "home.html"));
+  res.sendFile(path.join(__dirname, "./static/home.html"));
 });
 
 app.get("/reserve", function(req, res) {
-  res.sendFile(path.join(__dirname, "reserve.html"));
+  res.sendFile(path.join(__dirname, "./static/reserve.html"));
 });
 
 app.get("/view", function(req, res) {
   //return res.json(tables);
-  res.sendFile(path.join(__dirname, "tables.html"));
+  res.sendFile(path.join(__dirname, "./static/tables.html"));
 });
 
 // Displays all characters
@@ -97,6 +100,29 @@ app.post("/api/tables", function(req, res) {
   }
 
   // Using a RegEx Pattern to remove spaces from newCharacter
+  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+  //newTableRes.routeName = newTableRes.name.replace(/\s+/g, "").toLowerCase();
+
+  console.log(newTableRes);
+  if (tables.length >= 5) {
+    waitlist.push(newTableRes);
+  } else {
+    tables.push(newTableRes);
+  }
+
+  // Using a RegEx Pattern to remove spaces from newCharacter
+  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+  //newTableRes.routeName = newTableRes.name.replace(/\s+/g, "").toLowerCase();
+
+  console.log(newTableRes);
+  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+  //newTableRes.routeName = newTableRes.name.replace(/\s+/g, "").toLowerCase();
+
+  console.log(newTableRes);
+  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+  //newTableRes.routeName = newTableRes.name.replace(/\s+/g, "").toLowerCase();
+
+  console.log(newTableRes);
   // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
   //newTableRes.routeName = newTableRes.name.replace(/\s+/g, "").toLowerCase();
 
